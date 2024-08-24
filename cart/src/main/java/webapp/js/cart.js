@@ -1,3 +1,4 @@
+// cart.js (購物車微前端)
 window.cart = {
 	mount: (container) => {
 		let currentOrderId = parseInt(localStorage.getItem('currentOrderId')) || 1;

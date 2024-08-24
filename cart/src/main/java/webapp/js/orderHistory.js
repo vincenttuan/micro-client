@@ -1,3 +1,4 @@
+// orderHistory.js (購買歷史記錄微前端)
 window.orderHistory = {
 	mount: (container) => {
 		const orderHistoryDiv = document.createElement('div');
