@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微前端示例</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script>
+    	window.onload = function () {
+    		document.getElementById('clearLocalStorage').addEventListener('click', function() {
+                if (confirm('確定要清除所有本地儲存的資料嗎？這將重置所有訂單歷史和訂單ID。')) {
+                    localStorage.clear();
+                    alert('所有本地儲存的資料已被清除。頁面將重新載入。');
+                    location.reload();
+                }
+            });
+		};
+    </script>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="js/main.js"></script>
+    <button id="clearLocalStorage">清除所有資料</button>
+   
+</body>
+</html>
