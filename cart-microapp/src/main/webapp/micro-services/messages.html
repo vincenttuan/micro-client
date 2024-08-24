@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>即時訊息</title>
+    <style>
+        /* 微前端應用的樣式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #messages {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="messages">
+        <h2>即時訊息</h2>
+        <ul id="messageList"></ul>
+        <input id="messageInput" type="text">
+        <button id="sendButton">發送</button>
+    </div>
+
+    <script>
+        // 微前端應用的 JavaScript 邏輯
+        document.addEventListener('DOMContentLoaded', () => {
+            const messageList = document.getElementById('messageList');
+            const messageInput = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendButton');
+
+            sendButton.addEventListener('click', () => {
+                const message = messageInput.value;
+                if (message) {
+                    const now = new Date();
+                    const li = document.createElement('li');
+                    li.textContent = `${message} (${now.getHours()}:${now.getMinutes()}:${now.getSeconds()})`;
+                    messageList.appendChild(li);
+                    messageInput.value = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

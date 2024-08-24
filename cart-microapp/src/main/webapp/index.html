@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微前端示例 - 主應用</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="app"></div>
+    <button id="clearLocalStorage">清除所有資料</button>
+
+     <!-- 引入 qiankun 框架 -->
+    <script src="https://cdn.jsdelivr.net/npm/qiankun@latest/dist/qiankun.js"></script>
+
+    <script>
+        // 清除本地儲存功能
+        document.getElementById('clearLocalStorage').addEventListener('click', function() {
+            if (confirm('確定要清除所有本地儲存的資料嗎？這將重置所有訂單歷史和訂單ID。')) {
+                localStorage.clear();
+                alert('所有本地儲存的資料已被清除。頁面將重新載入。');
+                location.reload();
+            }
+        });
+
+        // 註冊微前端應用
+        function registerMicroApps() {
+            // 使用 qiankun 的 registerMicroApps 方法來註冊微前端應用
+            qiankun.registerMicroApps([
+                {
+                    name: 'messages', // 微前端應用名稱
+                    entry: '/cart-microapp/micro-services/messages.html', // 微前端應用入口
+                    container: '#app', // 主應用中的容器
+                    activeRule: '/messages', // 當 URL 匹配此規則時激活應用
+                },
+                
+            ]);
+        }
+
+        // 啟動 qiankun
+        qiankun.start();
+        registerMicroApps();
+    </script>
+</body>
+</html>
