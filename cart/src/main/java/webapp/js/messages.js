@@ -12,8 +12,9 @@ window.messages = {
     sendButton.addEventListener('click', () => {
       const message = messageInput.value;
       if (message) {
+		now = new Date();
         const li = document.createElement('li');
-        li.textContent = message;
+        li.textContent = message + ' (' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + ')';
         messageList.appendChild(li);
         messageInput.value = '';
         // 這裡可以添加向後端發送消息的邏輯

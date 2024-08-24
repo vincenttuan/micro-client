@@ -1,11 +1,10 @@
 // main.js (主應用程序)
 const app = document.getElementById('app');
-
 // 載入微前端
 // 這個函數是整個架構的關鍵，它實現了動態加載和初始化微前端模塊
 function loadMicrofrontend(name, elementId) {
   const script = document.createElement('script');
-  script.src = `js/${name}.js`;
+  script.src = `js/${name}.js?${new Date()}`;
   document.body.appendChild(script);
   script.onload = () => {
     window[name].mount(document.getElementById(elementId));
