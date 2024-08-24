@@ -1,16 +1,23 @@
 // main.js
 
 // 簡單的事件系統
+// 產品模組 到 購物車模組: 當用戶添加商品到購物車時，products.js 觸發事件，cart.js 響應該事件。
+// 購物車模組 到 訂單歷史模組: 當用戶完成訂單時，cart.js 觸發事件，orderHistory.js 響應該事件。
 window.eventSystem = {
+	// 監聽器列表
     listeners: {},
+    // 註冊監聽器
     on(event, callback) {
         if (!this.listeners[event]) {
             this.listeners[event] = [];
         }
+        // 將回調函數添加到監聽器列表中
         this.listeners[event].push(callback);
     },
+    // 發送事件
     emit(event, data) {
         if (this.listeners[event]) {
+			// 遍歷監聽器列表, 並將數據作為參數傳遞給每個回調函數
             this.listeners[event].forEach(callback => callback(data));
         }
     }
@@ -29,6 +36,9 @@ function loadMicrofrontend(name, elementId) {
 // 創建容器元素並載入微前端
 function initApp() {
     const app = document.getElementById('app');
+    // 微前端名稱和容器 ID
+    // 這裡我們將應用分為四個微前端：messages、products、cart 和 orderHistory
+    // 就是 js/messages.js、js/products.js、js/cart.js 和 js/orderHistory.js
     ['messages', 'products', 'cart', 'orderHistory'].forEach(name => {
         const container = document.createElement('div');
         container.id = name;
